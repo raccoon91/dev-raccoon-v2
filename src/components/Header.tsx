@@ -1,52 +1,47 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   display: flex;
 `;
 
-const HeaderLink = styled.nav`
+const Navigation = styled(NavLink)`
+  position: relative;
   width: 80px;
   height: 30px;
-  border: 1px solid black;
+  color: black;
+  text-decoration: none;
   text-align: center;
   line-height: 28px;
-  cursor: pointer;
-  transition: border-bottom-color 0.5s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: red;
+    transition: width 0.5s;
+  }
 
   &.active {
-    border-bottom-color: red;
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
-interface IHeaderProps {
-  routerChangeEvent: () => void;
-}
-const Header: FC<IHeaderProps> = ({ routerChangeEvent }) => {
-  const history = useHistory();
-  const { pathname } = history.location;
-
-  const onChangeRoute = (e: React.MouseEvent<HTMLDivElement>): void => {
-    const { path } = e.currentTarget.dataset;
-
-    if (path && path !== pathname) {
-      routerChangeEvent();
-
-      setTimeout(() => {
-        history.push(path);
-      }, 500);
-    }
-  };
-
+const Header: FC = () => {
   return (
     <HeaderContainer>
-      <HeaderLink data-path="/" onClick={onChangeRoute}>
+      <Navigation exact to="/" activeClassName="active">
         home
-      </HeaderLink>
-      <HeaderLink data-path="/about" onClick={onChangeRoute}>
+      </Navigation>
+      <Navigation exact to="/about" activeClassName="active">
         about
-      </HeaderLink>
+      </Navigation>
     </HeaderContainer>
   );
 };

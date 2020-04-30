@@ -1,28 +1,41 @@
 import React, { FC } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-interface IAboutContainerProps {
-  mount: boolean;
-}
-const AboutContainer = styled.div<IAboutContainerProps>`
-  transform: translateY(10%);
-  opacity: 0;
-  transition: opacity 0.5s, transform 0.5s;
+const AboutContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  ${({ mount }) =>
-    mount &&
-    css`
-      opacity: 1;
-      transform: translateY(0);
-    `}
+  &.change-enter {
+    opacity: 0;
+    transform: translateY(30px);
+    color: red;
+  }
+
+  &.change-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+    color: blue;
+  }
+
+  &.change-exit {
+    opacity: 1;
+    transform: translateY(0);
+    color: green;
+  }
+
+  &.change-exit-active {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.3s, transform 0.5s;
+    color: yellow;
+  }
 `;
 
-interface IAboutProps {
-  mount: boolean;
-}
-const About: FC<IAboutProps> = ({ mount }) => {
+const About: FC = () => {
   return (
-    <AboutContainer mount={mount}>
+    <AboutContainer>
       <h1>About</h1>
       <p>
         Donec sit amet augue at enim sollicitudin porta. Praesent finibus ex velit, quis faucibus libero congue et.

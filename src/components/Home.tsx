@@ -1,28 +1,41 @@
 import React, { FC } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-interface IHomeContainerProps {
-  mount: boolean;
-}
-const HomeContainer = styled.div<IHomeContainerProps>`
-  transform: translateY(10%);
-  opacity: 0;
-  transition: opacity 0.5s, transform 0.5s;
+const HomeContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  ${({ mount }) =>
-    mount &&
-    css`
-      opacity: 1;
-      transform: translateY(0);
-    `}
+  &.change-enter {
+    opacity: 0;
+    transform: translateY(30px);
+    color: red;
+  }
+
+  &.change-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
+    color: blue;
+  }
+
+  &.change-exit {
+    opacity: 1;
+    transform: translateY(0);
+    color: green;
+  }
+
+  &.change-exit-active {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.3s, transform 0.5s;
+    color: yellow;
+  }
 `;
 
-interface IHomeProps {
-  mount: boolean;
-}
-const Home: FC<IHomeProps> = ({ mount }) => {
+const Home: FC = () => {
   return (
-    <HomeContainer mount={mount}>
+    <HomeContainer>
       <h1>Home</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet, purus vitae eleifend tristique, lorem
