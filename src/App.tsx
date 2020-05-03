@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
 import Header from "components/Header";
@@ -8,28 +8,22 @@ import Home from "components/Home";
 import About from "components/About";
 
 const AppContainer = styled.div`
-  position: relative;
+  padding-top: 60px;
 `;
 
 const App: FC = () => {
+  const location = useLocation();
+
   return (
-    <Router>
+    <AppContainer>
       <Header />
-      <AppContainer>
-        <Route
-          render={({ location }) => (
-            <TransitionGroup>
-              <CSSTransition key={location.key} timeout={500} classNames="change">
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/about" component={About} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-        />
-      </AppContainer>
-    </Router>
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+        </Switch>
+      </AnimatePresence>
+    </AppContainer>
   );
 };
 
