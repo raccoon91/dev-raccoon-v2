@@ -1,41 +1,22 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const AboutContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+const AboutContainer = styled(motion.div)``;
 
-  &.change-enter {
-    opacity: 0;
-    transform: translateY(30px);
-    color: red;
-  }
+const pageVariants = {
+  initial: { opacity: 0, y: 50 },
+  enter: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -50 },
+};
 
-  &.change-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s, transform 0.5s;
-    color: blue;
-  }
-
-  &.change-exit {
-    opacity: 1;
-    transform: translateY(0);
-    color: green;
-  }
-
-  &.change-exit-active {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.3s, transform 0.5s;
-    color: yellow;
-  }
-`;
+const pageTransition = {
+  duration: 0.3,
+};
 
 const About: FC = () => {
   return (
-    <AboutContainer>
+    <AboutContainer initial="initial" animate="enter" exit="exit" variants={pageVariants} transition={pageTransition}>
       <h1>About</h1>
       <p>
         Donec sit amet augue at enim sollicitudin porta. Praesent finibus ex velit, quis faucibus libero congue et.
