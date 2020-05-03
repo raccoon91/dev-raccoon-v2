@@ -3,17 +3,24 @@ import styled from "styled-components";
 import { NavLink, useHistory } from "react-router-dom";
 
 const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
 `;
 
 const Navigation = styled(NavLink)`
   position: relative;
-  width: 80px;
-  height: 30px;
+  width: 160px;
+  height: 60px;
   color: black;
+  font-size: 18px;
   text-decoration: none;
   text-align: center;
-  line-height: 28px;
+  line-height: 58px;
 
   &::after {
     content: "";
@@ -22,7 +29,7 @@ const Navigation = styled(NavLink)`
     left: 0;
     width: 0;
     height: 3px;
-    background-color: red;
+    background-color: #0074d9;
     transition: width 0.5s;
   }
 
@@ -47,10 +54,10 @@ const Header: FC = () => {
   return (
     <HeaderContainer>
       <Navigation exact to="/" activeClassName="active" onClick={handleChangeRoute("/")}>
-        home
+        홈
       </Navigation>
       <Navigation exact to="/about" activeClassName="active" onClick={handleChangeRoute("/about")}>
-        about
+        포트폴리오
       </Navigation>
     </HeaderContainer>
   );
