@@ -18,6 +18,7 @@ const Navigation = styled(NavLink)`
   height: 60px;
   color: black;
   font-size: 18px;
+  font-weight: 700;
   text-decoration: none;
   text-align: center;
   line-height: 58px;
@@ -54,10 +55,10 @@ const Header: FC = () => {
   return (
     <HeaderContainer>
       <Navigation exact to="/" activeClassName="active" onClick={handleChangeRoute("/")}>
-        홈
+        Home
       </Navigation>
       <Navigation exact to="/about" activeClassName="active" onClick={handleChangeRoute("/about")}>
-        포트폴리오
+        Project
       </Navigation>
     </HeaderContainer>
   );
