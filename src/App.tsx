@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Header from "components/Header";
 import Home from "components/Home";
 import Project from "components/Project";
+import Contact from "components/Contact";
 
 const AppContainer = styled.div``;
 
@@ -19,6 +20,7 @@ const App: FC = () => {
         <Switch location={location} key={location.pathname}>
           <Route exact path="/" component={Home} />
           <Route exact path="/project" component={Project} />
+          <Route exact path="/contact" component={Contact} />
         </Switch>
       </AnimatePresence>
     </AppContainer>

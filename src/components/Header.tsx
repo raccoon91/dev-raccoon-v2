@@ -50,6 +50,9 @@ const Header: FC = () => {
       <Navigation exact to="/project" activeClassName="active">
         Project
       </Navigation>
+      <Navigation exact to="/contact" activeClassName="active">
+        Contact
+      </Navigation>
     </HeaderContainer>
   );
 };
