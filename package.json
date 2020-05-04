@@ -5,7 +5,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "purge": "aws cloudfront create-invalidation --profile=raccoon --distribution-id E3B3PXBMUQ2QPF --paths / /index.html /error.html /service-worker.js /manifest.json /favicon.ico",
+    "deploy": "yarn build && aws s3 sync ./build s3://dev-raccoon --profile=raccoon && yarn purge"
   },
   "dependencies": {
     "framer-motion": "^1.10.3",
