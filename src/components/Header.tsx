@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -42,22 +42,12 @@ const Navigation = styled(NavLink)`
 `;
 
 const Header: FC = () => {
-  const history = useHistory();
-
-  const handleChangeRoute = (path: string) => {
-    return (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const { pathname } = history.location;
-
-      if (path === pathname) e.preventDefault();
-    };
-  };
-
   return (
     <HeaderContainer>
-      <Navigation exact to="/" activeClassName="active" onClick={handleChangeRoute("/")}>
+      <Navigation exact to="/" activeClassName="active">
         Home
       </Navigation>
-      <Navigation exact to="/about" activeClassName="active" onClick={handleChangeRoute("/about")}>
+      <Navigation exact to="/project" activeClassName="active">
         Project
       </Navigation>
     </HeaderContainer>

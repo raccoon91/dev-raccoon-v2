@@ -5,11 +5,9 @@ import styled from "styled-components";
 
 import Header from "components/Header";
 import Home from "components/Home";
-import About from "components/About";
+import Project from "components/Project";
 
-const AppContainer = styled.div`
-  padding-top: 60px;
-`;
+const AppContainer = styled.div``;
 
 const App: FC = () => {
   const location = useLocation();
@@ -20,7 +18,7 @@ const App: FC = () => {
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname}>
           <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/project" component={Project} />
         </Switch>
       </AnimatePresence>
     </AppContainer>
