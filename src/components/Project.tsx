@@ -7,13 +7,19 @@ import Modal from "components/Modal";
 import projectData from "config/project.json";
 
 const ProjectContainer = styled.div`
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  overflow-y: auto;
   padding-top: 180px;
   height: 100vh;
   background-color: rgb(248, 249, 250);
+`;
+
+const CardWrapper = styled(motion.ul)`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1600px;
+  margin: 0 auto;
 `;
 
 const Card = styled(motion.div)`
@@ -21,10 +27,10 @@ const Card = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 400px;
+  width: 360px;
   height: 350px;
   padding-bottom: 20px;
-  margin: 0 20px;
+  margin: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
   background-color: white;
@@ -78,10 +84,34 @@ const Date = styled(Text)`
   margin-left: auto;
 `;
 
-const pageVariants = {
-  initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -50 },
+const wrapperVariants = {
+  animate: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+  exit: {
+    transition: { staggerChildren: 0.1, staggerDirection: -1 },
+  },
+};
+
+const cardVariants = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 },
+    },
+  },
+  exit: {
+    y: 100,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 },
+    },
+  },
 };
 
 const Project: FC = () => {
@@ -97,34 +127,28 @@ const Project: FC = () => {
 
   return (
     <ProjectContainer>
-      {projectData.map((project) => (
-        <Card
-          key={project.title}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          variants={pageVariants}
-          transition={{ duration: 0.3, delay: project.delay }}
-          onClick={handleOpenModal}
-        >
-          <ImageWrapper>
-            <Image src={project.imageUrl} alt="Test" />
-          </ImageWrapper>
-          <Row marginTop="5px">
-            <Title>{project.title}</Title>
-            <Date size="14px" color="gray">
-              {project.duration}
-            </Date>
-          </Row>
-          <Row marginTop="auto">
-            <Text weight="700">{project.position}</Text>
-          </Row>
+      <CardWrapper initial="initial" animate="animate" exit="exit" variants={wrapperVariants}>
+        {projectData.map((project) => (
+          <Card key={project.title} variants={cardVariants} onClick={handleOpenModal}>
+            <ImageWrapper>
+              <Image src={project.imageUrl} />
+            </ImageWrapper>
+            <Row marginTop="5px">
+              <Title>{project.title}</Title>
+              <Date size="12px" color="gray">
+                {project.duration}
+              </Date>
+            </Row>
+            <Row marginTop="auto">
+              <Text weight="700">{project.position}</Text>
+            </Row>
 
-          <Row marginTop="16px">
-            <Text>{project.skills}</Text>
-          </Row>
-        </Card>
-      ))}
+            <Row marginTop="16px">
+              <Text>{project.skills}</Text>
+            </Row>
+          </Card>
+        ))}
+      </CardWrapper>
 
       <AnimatePresence>{isOpenModal && <Modal handleCloseModal={handleCloseModal} />}</AnimatePresence>
     </ProjectContainer>
