@@ -47,7 +47,6 @@ const Anchor = styled.a`
 `;
 
 const listVariants = {
-  initial: {},
   animate: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
   },
