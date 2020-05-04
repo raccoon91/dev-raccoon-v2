@@ -1,0 +1,34 @@
+[
+  {
+    "title": "바달",
+    "position": "Front-end",
+    "skills": "React, Mobx, styled-components",
+    "duration": "( 2019.10 - 2019.11 )",
+    "imageUrl": "./images/badal.svg",
+    "delay": 0
+  },
+  {
+    "title": "원트럭",
+    "position": "Front-end",
+    "skills": "React, Typescript, Mobx, styled-components, Serverless Framework",
+    "duration": "( 2019.12 - 2020.04 )",
+    "imageUrl": "./images/one-truck.svg",
+    "delay": 0.2
+  },
+  {
+    "title": "Raccoon Weather",
+    "position": "Front-end, Back-end",
+    "skills": "React, Typescripts, Express, MySQL, sequelize, Redis, EC2",
+    "duration": "( 2019.07 / v2 : 2020.04 )",
+    "imageUrl": "./images/raccoon-weather.svg",
+    "delay": 0.4
+  },
+  {
+    "title": "React Async Select",
+    "position": "Front-end",
+    "skills": "React, Typescript, styled-components",
+    "duration": "( 진행중 )",
+    "imageUrl": "./images/react-async-select.png",
+    "delay": 0.6
+  }
+]
